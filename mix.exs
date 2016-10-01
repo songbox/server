@@ -38,7 +38,8 @@ defmodule Songbox.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:ja_serializer, "~> 0.11.0"},
-      {:credo, "~> 0.4.11", only: :dev}
+      {:credo, "~> 0.4.11", only: :dev},
+      {:junit_formatter, ">= 0.0.0"}
     ]
   end
 

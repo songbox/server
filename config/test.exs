@@ -17,3 +17,9 @@ config :songbox, Songbox.Repo,
   database: "songbox_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+# Configure junit formatter
+config :junit_formatter,
+  report_file: "results.xml",
+  print_report_file: true
+
