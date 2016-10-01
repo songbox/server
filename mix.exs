@@ -37,7 +37,10 @@ defmodule Songbox.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
+      # api dependencies
       {:ja_serializer, "~> 0.11.0"},
+      {:cors_plug, "~> 1.1"},
+      # dev/test dependencies
       {:credo, "~> 0.4.11", only: :dev},
       {:junit_formatter, ">= 0.0.0"}
     ]

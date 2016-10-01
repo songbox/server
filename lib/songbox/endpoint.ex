@@ -36,5 +36,7 @@ defmodule Songbox.Endpoint do
     key: "_songbox_key",
     signing_salt: "HLFCGg1j"
 
+  plug CORSPlug
+
   plug Songbox.Router
 end
