@@ -5,8 +5,19 @@ matrix:
       elixir: 1.3.2
 services:
   - redis-server
+
 sudo: false
+
 before_script:
   - mix deps.get --only test
+
 script:
   - mix test
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: k4hyiyzPkzHXmH73JNeid+WgnewKvJgHtqNlg6VKDJpl2TZ7BKosepNpI8uETtxQbxqYvwAsZEX0AfIrXw62cpg9N+WwL0UJbcLHTcTFeo6uGsqVTN4qw60c/AGjNpCJTR7p+YfPNVsjmqhtwyIcm4M6Sb2gFv0yjjvVnygXFfqzb4LQzmHWmXVbhf6760h4tcgHwnFiSWbwVgqGFtv+JBQjuYiuvoY1Z2T6vyQsdzZBEM3R4CuMj+q+z+2h28Yd/BCX0Sq22delx9m8zcB7jcudfu8M459/anU0+IwHVK5x5qdOvijCDsj6lhgLjjGJS5Be2k1fOJif23+Mp6fb1E9XZnR40tiZbMmtguWMZXWvshWDLnjcJeiGnX91eB61ziwTeMTuKiHh8dHoUi6VsJvdjxlQV04IZffeVnlq0MgxLX39lZZ4h1SIaTe/nZefqaGoqRqydLkugDpKjvPtfyB2ugFjOWM8PtMeqtgjrFMZkmusWpyl3eax0LPtbGFwJKR7RMbdwefhbgBdPLwXZs0QFbCqQ1WsdAer/1Aqrj9P/ubBO2O8Vn2e2/hcm0bRuPoe8glm/PtBWpBUjbgApPviY5QvSWJoVkXD14CtvzZOrh64V+Nx6UjtToIBJ0nC4iyW08OmfyTiK4fIgjCIhyPKfLwL/27jEoGIC9EgL54=
+  app: songboxapi
+  on:
+    repo: songbox/server
