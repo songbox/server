@@ -1,18 +1,19 @@
 language: elixir
 matrix:
   include:
-    - otp_release: 19.1
-      elixir: 1.3.2
+  - otp_release: 19.1
+    elixir: 1.3.2
+
 services:
-  - redis-server
+- redis-server
 
 sudo: false
 
 before_script:
-  - mix deps.get --only test
+- mix deps.get --only test
 
 script:
-  - mix test
+- mix test
 
 deploy:
   provider: heroku
