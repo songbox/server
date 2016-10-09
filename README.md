@@ -1,5 +1,7 @@
 # Songbox
 
+[![Build Status](https://travis-ci.org/songbox/server.svg?branch=master)](https://travis-ci.org/songbox/server)
+
 To start your Phoenix app:
 
   * Install dependencies with `mix deps.get`
