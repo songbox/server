@@ -5,30 +5,10 @@ defmodule Songbox.UserController do
   alias JaSerializer.Params
 
   plug :scrub_params, "data" when action in [:create, :update]
+  plug Guardian.Plug.EnsureAuthenticated, handler: Songbox.AuthErrorHandler
 
-  def index(conn, _params) do
-    users = Repo.all(User)
-    render(conn, "index.json-api", data: users)
-  end
-
-  def create(conn, %{"data" => data = %{"type" => "user", "attributes" => _user_params}}) do
-    changeset = User.changeset(%User{}, Params.to_attributes(data))
-
-    case Repo.insert(changeset) do
-      {:ok, user} ->
-        conn
-        |> put_status(:created)
-        |> put_resp_header("location", user_path(conn, :show, user))
-        |> render("show.json-api", data: user)
-      {:error, changeset} ->
-        conn
-        |> put_status(:unprocessable_entity)
-        |> render(:errors, data: changeset)
-    end
-  end
-
-  def show(conn, %{"id" => id}) do
-    user = Repo.get!(User, id)
+  def current(conn, _) do
+    user = Guardian.Plug.current_resource(conn)
     render(conn, "show.json-api", data: user)
   end
 

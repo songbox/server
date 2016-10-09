@@ -12,64 +12,19 @@ defmodule Songbox.UserControllerTest do
   @invalid_attrs %{}
 
   setup do
+    user = Repo.insert! %Songbox.User{}
+    { :ok, jwt, _ } = Guardian.encode_and_sign(user, :token)
+
     conn = build_conn()
       |> put_req_header("accept", "application/vnd.api+json")
       |> put_req_header("content-type", "application/vnd.api+json")
+      |> put_req_header("authorization", "Bearer #{jwt}")
 
-    {:ok, conn: conn}
+    {:ok, %{conn: conn, user: user}}
   end
 
   defp relationships do
     %{}
-  end
-
-  test "lists all entries on index", %{conn: conn} do
-    conn = get conn, user_path(conn, :index)
-    assert json_response(conn, 200)["data"] == []
-  end
-
-  test "shows chosen resource", %{conn: conn} do
-    user = Repo.insert! %User{}
-    conn = get conn, user_path(conn, :show, user)
-    data = json_response(conn, 200)["data"]
-    assert data["id"] == "#{user.id}"
-    assert data["type"] == "user"
-    assert data["attributes"]["email"] == user.email
-    assert data["attributes"]["password"] == user.password
-    assert data["attributes"]["password_confirmation"] == user.password_confirmation
-  end
-
-  test "does not show resource and instead throw error when id is nonexistent", %{conn: conn} do
-    assert_error_sent 404, fn ->
-      get conn, user_path(conn, :show, -1)
-    end
-  end
-
-  test "creates and renders resource when data is valid", %{conn: conn} do
-    conn = post conn, user_path(conn, :create), %{
-      "meta" => %{},
-      "data" => %{
-        "type" => "user",
-        "attributes" => @valid_attrs,
-        "relationships" => relationships
-      }
-    }
-
-    assert json_response(conn, 201)["data"]["id"]
-    assert Repo.get_by(User, %{email: @valid_attrs[:email]})
-  end
-
-  test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, user_path(conn, :create), %{
-      "meta" => %{},
-      "data" => %{
-        "type" => "user",
-        "attributes" => @invalid_attrs,
-        "relationships" => relationships
-      }
-    }
-
-    assert json_response(conn, 422)["errors"] != %{}
   end
 
   test "updates and renders chosen resource when data is valid", %{conn: conn} do

@@ -10,7 +10,7 @@ defmodule Songbox.Router do
   # Authenticated Requests
   pipeline :api_auth do
     plug :accepts, ["json-api"]
-    plug Guardian.Plug.VerifyHeader
+    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
     plug Guardian.Plug.LoadResource
     plug JaSerializer.ContentTypeNegotiation
     plug JaSerializer.Deserializer
@@ -29,6 +29,7 @@ defmodule Songbox.Router do
   scope "/api", Songbox do
     pipe_through :api_auth
 
+    get "/user/current", UserController, :current
     resources "/users", UserController, except: [:new, :edit]
   end
 end
