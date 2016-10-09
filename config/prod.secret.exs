@@ -11,6 +11,10 @@ use Mix.Config
 config :songbox, Songbox.Endpoint,
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
+# Configures authentication
+config :guardian, Guardian,
+  secret_key: System.get_env("GUARDIAN_SECRET")
+
 # Configure your database
 config :songbox, Songbox.Repo,
   adapter: Ecto.Adapters.Postgres,

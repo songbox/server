@@ -19,7 +19,7 @@ defmodule Songbox.Mixfile do
   def application do
     [mod: {Songbox, []},
      applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :comeonin]]
   end
 
   # Specifies which paths to compile per environment.
@@ -38,8 +38,10 @@ defmodule Songbox.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       # api dependencies
-      {:ja_serializer, "~> 0.11.0"},
       {:cors_plug, "~> 1.1"},
+      {:comeonin, "~> 2.5"},
+      {:guardian, "~> 0.13.0"},
+      {:ja_serializer, "~> 0.11.0"},
       # dev/test dependencies
       {:credo, "~> 0.4.11", only: :dev},
       {:junit_formatter, ">= 0.0.0"}

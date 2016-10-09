@@ -28,6 +28,16 @@ config :songbox, Songbox.Endpoint,
   pubsub: [name: Songbox.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+# Configures authentication
+config :guardian, Guardian,
+  allowed_algos: ["HS512"], # optional
+  verify_module: Guardian.JWT,  # optional
+  issuer: "Songbox",
+  ttl: { 30, :days },
+  verify_issuer: true, # optional
+  secret_key: "MHYI1P5y5cwpukEsOguYySh2fvkf/twdm3HKIF4bVXqmUk6TVsKQAwhnXIfsAQcs",
+  serializer: Songbox.GuardianSerializer
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
