@@ -21,11 +21,11 @@ defmodule Songbox.RegistrationController do
       {:ok, user} ->
         conn
         |> put_status(:created)
-        |> render(Songbox.UserView, "show.json", user: user)
+        |> render(Songbox.UserView, "show.json-api", data: user)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(Songbox.ChangesetView, "error.json", changeset: changeset)
+        |> render(:errors, data: changeset)
     end
   end
 

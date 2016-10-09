@@ -13,6 +13,8 @@ defmodule Songbox.Router do
     # registration
     post "/register", RegistrationController, :create
 
+    resources "/users", UserController, except: [:new, :edit]
+
     # session
     resources "/session", SessionController, only: [:index]
   end
