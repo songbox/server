@@ -10,6 +10,10 @@ defmodule Songbox.Router do
   scope "/api", Songbox do
     pipe_through :api
 
+    # registration
+    post "/register", RegistrationController, :create
+
+    # session
     resources "/session", SessionController, only: [:index]
   end
 end
