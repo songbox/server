@@ -5,11 +5,11 @@ defmodule Songbox.RegistrationController do
 
   def create(conn, %{
     "data" => %{
-      "type" => "users",
+      "type" => "user",
       "attributes" => %{
         "email" => email,
         "password" => password,
-        "password-confirmation" => password_confirmation
+        "password_confirmation" => password_confirmation
       }
     }}) do
 

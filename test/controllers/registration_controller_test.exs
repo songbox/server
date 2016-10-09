@@ -11,8 +11,12 @@ defmodule Songbox.RegistrationControllerTest do
 
   @invalid_attrs %{}
 
-  setup %{conn: conn} do
-    {:ok, conn: put_req_header(conn, "accept", "application/json")}
+  setup do
+    conn = build_conn()
+      |> put_req_header("accept", "application/vnd.api+json")
+      |> put_req_header("content-type", "application/vnd.api+json")
+
+    {:ok, conn: conn}
   end
 
   test "creates and renders resource when data is valid", %{conn: conn} do
