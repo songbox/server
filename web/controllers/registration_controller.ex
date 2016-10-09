@@ -25,7 +25,7 @@ defmodule Songbox.RegistrationController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(:errors, data: changeset)
+        |> render(Songbox.UserView, :errors, data: changeset)
     end
   end
 
