@@ -12,9 +12,6 @@ defmodule Songbox.SessionController do
     "password" => password}) do
 
     try do
-
-      # Attempt to retrieve exactly one user from the DB, whose
-      #   email matches the one provided with the login request
       user = User
       |> where(email: ^username)
       |> Repo.one!
@@ -23,16 +20,15 @@ defmodule Songbox.SessionController do
         checkpw(password, user.password_hash) ->
           # Successful login
           Logger.info "User " <> username <> " just logged in"
-          # Encode a JWT
           { :ok, jwt, _} = Guardian.encode_and_sign(user, :token)
           conn
-          |> json(%{access_token: jwt}) # Return token to the client
+          |> json(%{access_token: jwt})
         true ->
           # Unsuccessful login
           Logger.warn "User " <> username <> " just failed to login"
           conn
           |> put_status(401)
-          |> render(Songbox.ErrorView, "401.json") # 401
+          |> render(Songbox.ErrorView, "401.json")
       end
     rescue
       e ->
@@ -40,12 +36,15 @@ defmodule Songbox.SessionController do
         Logger.error "Unexpected error while attempting to login user " <> username
         conn
         |> put_status(401)
-        |> render(Songbox.ErrorView, "401.json") # 401
+        |> render(Songbox.ErrorView, "401.json")
     end
   end
 
-  def create(conn, %{"grant_type" => _}) do
-    ## Handle unknown grant type
+  def create(_conn, %{"grant_type" => "password"}) do
+    throw "Credentials incomplete, provide username and password"
+  end
+
+  def create(_conn, %{"grant_type" => _}) do
     throw "Unsupported grant_type"
   end
 

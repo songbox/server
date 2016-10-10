@@ -13,9 +13,11 @@ defmodule Songbox.RegistrationController do
       }
     }}) do
 
-    changeset = User.changeset(%User{}, %{email: email,
-      password_confirmation: password_confirmation,
-      password: password})
+    changeset = User.changeset(%User{}, %{
+      email: email,
+      password: password,
+      password_confirmation: password_confirmation
+    })
 
     case Repo.insert changeset do
       {:ok, user} ->

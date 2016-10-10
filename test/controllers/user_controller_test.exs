@@ -12,7 +12,7 @@ defmodule Songbox.UserControllerTest do
   @invalid_attrs %{}
 
   setup do
-    user = Repo.insert! %Songbox.User{}
+    user = Repo.insert! %User{}
     { :ok, jwt, _ } = Guardian.encode_and_sign(user, :token)
 
     conn = build_conn()
