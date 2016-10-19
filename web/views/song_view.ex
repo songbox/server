@@ -2,8 +2,21 @@ defmodule Songbox.SongView do
   use Songbox.Web, :view
   use JaSerializer.PhoenixView
 
-  attributes [:title, :author, :key, :tempo, :time, :text, :format, :license, :ccli, :inserted_at, :updated_at]
+  attributes [
+   :title,
+   :author,
+   :key,
+   :tempo,
+   :time,
+   :text,
+   :format,
+   :license,
+   :ccli,
+   :inserted_at,
+   :updated_at
+ ]
 
+  # workaround for ja_serializer deprecation warning
   def format(song, _conn) do
     song.format
   end
