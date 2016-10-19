@@ -14,7 +14,7 @@ defmodule Songbox.SongControllerTest do
 
     {:ok, conn: conn}
   end
-  
+
   defp relationships do
     %{}
   end
