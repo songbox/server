@@ -8,11 +8,15 @@ defmodule Songbox.SongControllerTest do
   @invalid_attrs %{}
 
   setup do
+    user = Repo.insert! %Songbox.User{}
+    { :ok, jwt, _ } = Guardian.encode_and_sign(user, :token)
+
     conn = build_conn()
       |> put_req_header("accept", "application/vnd.api+json")
       |> put_req_header("content-type", "application/vnd.api+json")
+      |> put_req_header("authorization", "Bearer #{jwt}")
 
-    {:ok, conn: conn}
+    {:ok, %{conn: conn, user: user}}
   end
 
   defp relationships do

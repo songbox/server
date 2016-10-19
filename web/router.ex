@@ -8,8 +8,9 @@ defmodule Songbox.Router do
 
   # Authenticated Requests
   pipeline :api_auth do
-    plug :accepts, ["json-api"]
+    plug :accepts, ["json", "json-api"]
     plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+    plug Guardian.Plug.EnsureAuthenticated, handler: Songbox.AuthErrorHandler
     plug Guardian.Plug.LoadResource
     plug JaSerializer.ContentTypeNegotiation
     plug JaSerializer.Deserializer
