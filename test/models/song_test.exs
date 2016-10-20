@@ -7,7 +7,8 @@ defmodule Songbox.SongTest do
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
-    changeset = Song.changeset(%Song{}, @valid_attrs)
+    user = Repo.insert! %Songbox.User{}
+    changeset = Song.changeset(%Song{user_id: user.id}, @valid_attrs)
     assert changeset.valid?
   end
 

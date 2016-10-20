@@ -23,6 +23,6 @@ defmodule Songbox.Song do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:title, :author, :key, :tempo, :time, :text, :format, :license, :ccli])
-    |> validate_required([:title, :text, :format])
+    |> validate_required([:user_id, :title, :text, :format])
   end
 end
