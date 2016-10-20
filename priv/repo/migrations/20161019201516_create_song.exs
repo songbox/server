@@ -15,6 +15,5 @@ defmodule Songbox.Repo.Migrations.CreateSong do
 
       timestamps()
     end
-
   end
 end
