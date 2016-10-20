@@ -12,6 +12,8 @@ defmodule Songbox.Song do
     field :license, :string
     field :ccli, :integer
 
+    belongs_to :user, Songbox.User
+
     timestamps()
   end
 
