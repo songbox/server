@@ -28,8 +28,8 @@ defmodule Songbox.SongControllerTest do
     assert json_response(conn, 200)["data"] == []
   end
 
-  test "shows chosen resource", %{conn: conn} do
-    song = Repo.insert! %Song{}
+  test "shows chosen resource", %{conn: conn, user: user} do
+    song = Repo.insert! %Song{user_id: user.id}
     conn = get conn, song_path(conn, :show, song)
     data = json_response(conn, 200)["data"]
     assert data["id"] == "#{song.id}"
@@ -78,8 +78,8 @@ defmodule Songbox.SongControllerTest do
     assert json_response(conn, 422)["errors"] != %{}
   end
 
-  test "updates and renders chosen resource when data is valid", %{conn: conn} do
-    song = Repo.insert! %Song{}
+  test "updates and renders chosen resource when data is valid", %{conn: conn, user: user} do
+    song = Repo.insert! %Song{user_id: user.id}
     conn = put conn, song_path(conn, :update, song), %{
       "meta" => %{},
       "data" => %{
@@ -94,8 +94,8 @@ defmodule Songbox.SongControllerTest do
     assert Repo.get_by(Song, @valid_attrs)
   end
 
-  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    song = Repo.insert! %Song{}
+  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn, user: user} do
+    song = Repo.insert! %Song{user_id: user.id}
     conn = put conn, song_path(conn, :update, song), %{
       "meta" => %{},
       "data" => %{
@@ -109,8 +109,8 @@ defmodule Songbox.SongControllerTest do
     assert json_response(conn, 422)["errors"] != %{}
   end
 
-  test "deletes chosen resource", %{conn: conn} do
-    song = Repo.insert! %Song{}
+  test "deletes chosen resource", %{conn: conn, user: user} do
+    song = Repo.insert! %Song{user_id: user.id}
     conn = delete conn, song_path(conn, :delete, song)
     assert response(conn, 204)
     refute Repo.get(Song, song.id)
