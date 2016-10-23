@@ -13,4 +13,6 @@ RUN mix deps.get
 # add app
 ADD . /app
 
+RUN mix compile
+
 CMD trap exit TERM; mix phoenix.server & wait
