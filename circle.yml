@@ -13,7 +13,7 @@ dependencies:
     - docker-compose -v
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker build --rm=false -t songbox/server .
-    - mkdir -p ~/docker; docker save server/server > ~/docker/image.tar
+    - mkdir -p ~/docker; docker save songbox/server > ~/docker/image.tar
 
 test:
   pre:
