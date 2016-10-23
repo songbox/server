@@ -15,7 +15,7 @@ config :songbox, Songbox.Repo,
   username: "postgres",
   password: "postgres",
   database: "songbox_test",
-  hostname: "localhost",
+  hostname: System.get_env("DATABASE_HOSTNAME") || "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
 # Configure junit formatter

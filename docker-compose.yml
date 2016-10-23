@@ -1,0 +1,17 @@
+version: '2'
+services:
+  web:
+    build: .
+    environment:
+      MIX_ENV: dev
+      DATABASE_HOSTNAME: postgres
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+  postgres:
+    image: postgres:9.5.4
+    volumes:
+      - ./data:/var/lib/postgresql/data

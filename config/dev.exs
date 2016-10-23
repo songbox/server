@@ -27,5 +27,5 @@ config :songbox, Songbox.Repo,
   username: "postgres",
   password: "postgres",
   database: "songbox_dev",
-  hostname: "localhost",
+  hostname: System.get_env("DATABASE_HOSTNAME") || "localhost",
   pool_size: 10
