@@ -17,7 +17,7 @@ dependencies:
 
 test:
   pre:
-    - docker-compose up postgres -d
+    - docker-compose up -d postgres
   override:
     - docker-compose run web mix test
   post:
