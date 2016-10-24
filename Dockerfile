@@ -8,7 +8,7 @@ RUN mix local.hex --force
 
 # add dependencies
 ADD mix.* /app/
-RUN mix deps.get; mix deps.compile
+RUN mix deps.get
 
 # add app
 ADD . /app
