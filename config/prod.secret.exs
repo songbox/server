@@ -19,4 +19,4 @@ config :guardian, Guardian,
 config :songbox, Songbox.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
-  pool_size: 20
+  pool_size: 18 # heroku's limit is 20 for 'hobby dev'
