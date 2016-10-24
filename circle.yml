@@ -3,13 +3,9 @@ machine:
     - docker
 
 dependencies:
-  cache_directories:
-    - "~/docker"
   override:
     - docker info
-    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker build --rm=false -t songbox/server .
-    - mkdir -p ~/docker; docker save songbox/server > ~/docker/image.tar
 
 test:
   pre:
