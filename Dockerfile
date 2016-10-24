@@ -1,4 +1,4 @@
-FROM library/elixir:1.3.4
+FROM elixir:1.3.4
 
 EXPOSE 4000
 WORKDIR /app
