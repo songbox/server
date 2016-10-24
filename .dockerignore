@@ -1,2 +1,15 @@
+# App artifacts
+_build
+db
+deps
+*.ez
+
+# Generated on crash by the VM
+erl_crash.dump
+
+# postgres data
+data
+
+# Docker files
 docker*
 Dockerfile
