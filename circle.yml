@@ -16,8 +16,6 @@ dependencies:
     - mkdir -p ~/docker; docker save songbox/server > ~/docker/image.tar
 
 test:
-  pre:
-    - docker-compose up -d postgres
   override:
     - docker-compose run web mix test
   post:
