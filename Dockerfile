@@ -8,11 +8,10 @@ RUN mix local.hex --force
 
 # add dependencies
 ADD mix.* /app/
-RUN mix deps.get
+RUN mix deps.get; mix deps.compile
 
 # add app
 ADD . /app
-
 RUN mix compile
 
 CMD trap exit TERM; mix phoenix.server & wait
