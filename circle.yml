@@ -20,4 +20,3 @@ test:
     - docker-compose run web mix test
   post:
     - docker-compose down
-    - cp -R /app/_build/test/lib/songbox/*.xml $CIRCLE_TEST_REPORTS
