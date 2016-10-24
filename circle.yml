@@ -1,21 +1,23 @@
 machine:
-  pre:
-    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
-    - sudo pip install docker-compose
   services:
     - docker
 
 dependencies:
+  cache_directories:
+    - "~/docker"
   override:
     - docker info
-    - docker-compose -v
+    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker build --rm=false -t songbox/server .
+    - mkdir -p ~/docker; docker save songbox/server > ~/docker/image.tar
 
 test:
+  pre:
+    - sudo bash -c "echo \"listen_addresses = '*'\" >> /etc/postgresql/9.5/main/postgresql.conf"
+    - sudo bash -c "echo \"host all all 0.0.0.0/0 trust\" >> /etc/postgresql/9.5/main/pg_hba.conf"
+    - sudo /etc/init.d/postgresql restart
   override:
-    - docker-compose run web mix test
-  post:
-    - docker-compose down
+    - docker run --add-host postgres:$(ip addr show docker0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1) -e "DATABASE_HOSTNAME=postgres" songbox/server mix test
 
 deployment:
   production:
