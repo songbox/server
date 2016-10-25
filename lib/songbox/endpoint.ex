@@ -1,7 +1,8 @@
 defmodule Songbox.Endpoint do
   use Phoenix.Endpoint, otp_app: :songbox
 
-  socket "/socket", Songbox.UserSocket
+  socket "/socket/user", Songbox.UserSocket
+  socket "/socket/viewer", Songbox.ViewerSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #

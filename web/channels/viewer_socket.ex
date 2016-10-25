@@ -1,4 +1,4 @@
-defmodule Songbox.UserSocket do
+defmodule Songbox.ViewerSocket do
   use Phoenix.Socket
 
   ## Channels
