@@ -5,7 +5,7 @@ defmodule Songbox.UserSocket do
   channel "room:*", Songbox.RoomChannel
 
   ## Transports
-  transport :websocket, Phoenix.Transports.WebSocket, timeout: 45_000
+  transport :websocket, Phoenix.Transports.WebSocket, timeout: 45_000, check_origin: ["https://beta.songbox.co", "https://app.songbox.co"]
   # transport :longpoll, Phoenix.Transports.LongPoll
 
   # Socket params are passed from the client and can
