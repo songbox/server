@@ -1,5 +1,3 @@
-require IEx
-
 defmodule Songbox.RoomChannel do
   use Songbox.Web, :channel
 
@@ -9,7 +7,7 @@ defmodule Songbox.RoomChannel do
 
   # share a song
   def handle_in("share", payload, socket) do
-    if authorized?(payload, socket) do
+    if authorized?(socket) do
       broadcast socket, "share", payload
       {:noreply, socket}
     else
@@ -18,8 +16,7 @@ defmodule Songbox.RoomChannel do
   end
 
   # users are authorized, viewers not
-  defp authorized?(_payload, socket) do
-    # TODO: check if it is the user's room (maybe in join?)
+  defp authorized?(socket) do
     socket.handler == Songbox.UserSocket
   end
 end
