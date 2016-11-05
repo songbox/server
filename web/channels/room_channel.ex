@@ -1,8 +1,15 @@
 defmodule Songbox.RoomChannel do
   use Songbox.Web, :channel
 
-  def join("room:" <> _room_id, _payload, socket) do
-    {:ok, socket}
+  def join("room:" <> room_token, _payload, socket) do
+    user = Songbox.User
+           |> where(id: ^room_token)
+           |> Repo.one
+    if user do
+      {:ok, socket}
+    else
+      {:error, %{reason: "400"}}
+    end
   end
 
   # share a song
@@ -11,7 +18,7 @@ defmodule Songbox.RoomChannel do
       broadcast socket, "share", payload
       {:noreply, socket}
     else
-      {:error, %{reason: "unauthorized"}}
+      {:error, %{reason: "401"}}
     end
   end
 
