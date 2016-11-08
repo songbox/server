@@ -6,8 +6,6 @@ defmodule Songbox.UserView do
     :email
   ]
 
-  has_many :room,
-    field: :room_id,
-    type: "room"
+  has_one :room,serializer: Songbox.RoomView
 
 end

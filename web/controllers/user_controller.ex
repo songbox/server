@@ -5,6 +5,7 @@ defmodule Songbox.UserController do
 
   def current(conn, _) do
     user = Guardian.Plug.current_resource(conn)
+           |> Repo.preload(:room)
     render(conn, "show.json-api", data: user)
   end
 

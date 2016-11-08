@@ -30,6 +30,7 @@ defmodule Songbox.Router do
     pipe_through :api_auth
 
     get "/user/current", UserController, :current
+    resources "/rooms", RoomController, except: [:new, :edit]
     resources "/songs", SongController, except: [:new, :edit]
   end
 end
