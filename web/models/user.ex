@@ -33,8 +33,9 @@ defmodule Songbox.User do
 
   defp hash_password(%{valid?: false} = changeset), do: changeset
   defp hash_password(%{valid?: true} = changeset) do
-    hashedpw = Comeonin.Bcrypt.hashpwsalt(Ecto.Changeset.get_field(changeset, :password))
-    Ecto.Changeset.put_change(changeset, :password_hash, hashedpw)
+    password = get_field(changeset, :password)
+    hashedpw = Comeonin.Bcrypt.hashpwsalt(password)
+    put_change(changeset, :password_hash, hashedpw)
   end
 
 end
