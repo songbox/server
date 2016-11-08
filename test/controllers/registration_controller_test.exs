@@ -2,6 +2,7 @@ defmodule Songbox.RegistrationControllerTest do
   use Songbox.ConnCase
 
   alias Songbox.User
+  alias Songbox.Repo
 
   @valid_attrs %{
     email: "john.doe@example.com",
