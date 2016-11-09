@@ -8,7 +8,7 @@ defmodule Songbox.UserView do
     :email
   ]
 
-  has_one :room, serializer: Songbox.RoomView
+  has_one :room, serializer: Songbox.RoomView, include: true
 
   def room(struct, conn) do
     case struct.room do
