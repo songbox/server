@@ -15,7 +15,7 @@ defmodule Songbox.UserView do
       %Ecto.Association.NotLoaded{} ->
         struct
         |> Ecto.assoc(:room)
-        |> Repo.all
+        |> Repo.one
       other -> other
     end
   end
