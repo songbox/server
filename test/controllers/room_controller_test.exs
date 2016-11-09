@@ -20,6 +20,17 @@ defmodule Songbox.RoomControllerTest do
     {:ok, %{conn: conn, user: user}}
   end
 
+  defp relationships(user) do
+    %{
+      "user" => %{
+        "data" => %{
+          "type" => "user",
+          "id" => user.id
+        }
+      }
+    }
+  end
+
   test "shows chosen resource", %{conn: conn, user: user} do
     room = Repo.insert! %Room{user_id: user.id}
     conn = get conn, room_path(conn, :show, room)
@@ -28,6 +39,37 @@ defmodule Songbox.RoomControllerTest do
     assert data["type"] == "room"
     assert data["attributes"]["uid"] == room.uid
     assert data["relationships"]["user"]["data"]["id"] == "#{room.user_id}"
+  end
+
+  test "updates and renders chosen resource when data is valid", %{conn: conn, user: user} do
+    room = Repo.insert! %Room{user_id: user.id}
+    conn = put conn, room_path(conn, :update, room), %{
+      "meta" => %{},
+      "data" => %{
+        "type" => "room",
+        "id" => room.id,
+        "attributes" => @valid_attrs,
+        "relationships" => relationships(user)
+      }
+    }
+
+    assert json_response(conn, 200)["data"]["id"]
+    assert Repo.get_by(Room, @valid_attrs)
+  end
+
+  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn, user: user} do
+    room = Repo.insert! %Room{user_id: user.id}
+    conn = put conn, room_path(conn, :update, room), %{
+      "meta" => %{},
+      "data" => %{
+        "type" => "room",
+        "id" => room.id,
+        "attributes" => @invalid_attrs,
+        "relationships" => relationships(user)
+      }
+    }
+
+    assert json_response(conn, 422)["errors"] != %{}
   end
 
   test "does not show resource and instead throw error when id is nonexistent", %{conn: conn} do
