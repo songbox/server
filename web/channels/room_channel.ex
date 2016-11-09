@@ -1,11 +1,14 @@
 defmodule Songbox.RoomChannel do
   use Songbox.Web, :channel
 
-  def join("room:" <> room_token, _payload, socket) do
-    user = Songbox.User
-           |> where(id: ^room_token)
+  def join("room:" <> room_uid, _payload, socket) do
+    room = Songbox.Room
+           |> where(uid: ^room_uid)
            |> Repo.one
-    if user do
+
+    # TODO: save in session/socket if room belongs to user
+
+    if room do
       {:ok, socket}
     else
       {:error, %{reason: "400"}}
