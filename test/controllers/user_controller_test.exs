@@ -1,8 +1,11 @@
 defmodule Songbox.UserControllerTest do
   use Songbox.ConnCase
 
-  alias Songbox.User
-  alias Songbox.Repo
+  alias Songbox.{
+    User,
+    Room,
+    Repo
+  }
 
   @valid_attrs %{
     email: "john.doe@example.com",
@@ -23,4 +26,14 @@ defmodule Songbox.UserControllerTest do
     {:ok, %{conn: conn, user: user}}
   end
 
+  test "shows current user", %{conn: conn, user: user} do
+    room = Repo.insert! %Room{user: user}
+
+    conn = get conn, user_path(conn, :current)
+    data = json_response(conn, 200)["data"]
+    assert data["id"] == "#{user.id}"
+    assert data["type"] == "user"
+    assert data["attributes"]["email"] == user.email
+    assert data["relationships"]["room"]["data"]["id"] == "#{room.id}"
+  end
 end
