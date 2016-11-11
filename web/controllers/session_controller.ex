@@ -7,14 +7,15 @@ defmodule Songbox.SessionController do
 
   alias Songbox.User
 
-  def create(conn, %{"grant_type" => "password",
+  def create(conn, %{
+    "grant_type" => "password",
     "username" => username,
-    "password" => password}) do
-
+    "password" => password
+  }) do
     try do
       user = User
-      |> where(email: ^username)
-      |> Repo.one!
+             |> where(email: ^username)
+             |> Repo.one!
 
       cond do
         checkpw(password, user.password_hash) ->
