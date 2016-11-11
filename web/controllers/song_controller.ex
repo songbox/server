@@ -17,9 +17,8 @@ defmodule Songbox.SongController do
   end
 
   def create(conn, %{"data" => data = %{"type" => "song", "attributes" => _song_params}}) do
-    current_user = Guardian.Plug.current_resource(conn)
-
-    changeset = Song.changeset(%Song{user_id: current_user.id}, Params.to_attributes(data))
+    song = %Song{user_id: Guardian.Plug.current_resource(conn).id}
+    changeset = Song.changeset(song, Params.to_attributes(data))
 
     case Repo.insert(changeset) do
       {:ok, song} ->

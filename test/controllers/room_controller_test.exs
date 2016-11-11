@@ -56,7 +56,7 @@ defmodule Songbox.RoomControllerTest do
     assert json_response(conn, 200)["data"]["id"]
   end
 
-  test "does not update room when current_user is not the owner", %{conn: conn, user: user} do
+  test "does not update room when current_user is not the owner", %{conn: conn, user: _user} do
     other_user = Repo.insert! %User{}
     room = Repo.insert! %Room{user: other_user}
 

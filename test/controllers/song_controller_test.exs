@@ -19,10 +19,6 @@ defmodule Songbox.SongControllerTest do
     {:ok, %{conn: conn, user: user}}
   end
 
-  defp relationships do
-    %{}
-  end
-
   test "'GET /songs' lists all entries on index", %{conn: conn} do
     conn = get conn, song_path(conn, :index)
     assert json_response(conn, 200)["data"] == []
@@ -71,8 +67,7 @@ defmodule Songbox.SongControllerTest do
       "meta" => %{},
       "data" => %{
         "type" => "song",
-        "attributes" => @invalid_attrs,
-        "relationships" => relationships
+        "attributes" => @invalid_attrs
       }
     }
 
@@ -86,8 +81,7 @@ defmodule Songbox.SongControllerTest do
       "data" => %{
         "type" => "song",
         "id" => song.id,
-        "attributes" => @valid_attrs,
-        "relationships" => relationships
+        "attributes" => @valid_attrs
       }
     }
 
@@ -102,8 +96,7 @@ defmodule Songbox.SongControllerTest do
       "data" => %{
         "type" => "song",
         "id" => song.id,
-        "attributes" => @invalid_attrs,
-        "relationships" => relationships
+        "attributes" => @invalid_attrs
       }
     }
 
