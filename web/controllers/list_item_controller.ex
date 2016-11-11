@@ -33,20 +33,6 @@ defmodule Songbox.ListItemController do
     render(conn, "show.json-api", data: list_item)
   end
 
-  def update(conn, %{"id" => id, "data" => data = %{"type" => "list_item", "attributes" => _list_item_params}}) do
-    list_item = current_user_list_item(conn, id)
-    changeset = ListItem.changeset(list_item, Params.to_attributes(data))
-
-    case Repo.update(changeset) do
-      {:ok, list_item} ->
-        render(conn, "show.json-api", data: list_item)
-      {:error, changeset} ->
-        conn
-        |> put_status(:unprocessable_entity)
-        |> render(:errors, data: changeset)
-    end
-  end
-
   def delete(conn, %{"id" => id}) do
     list_item = current_user_list_item(conn, id)
 
