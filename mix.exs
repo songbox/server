@@ -55,7 +55,7 @@ defmodule Songbox.Mixfile do
       {:guardian, "~> 0.13.0"},
       {:ja_serializer, "~> 0.11.0"},
       # dev/test dependencies
-      {:credo, "~> 0.4.11", only: :dev},
+      {:credo, "~> 0.5.2", only: :dev},
       {:junit_formatter, ">= 0.0.0"}
     ]
   end
