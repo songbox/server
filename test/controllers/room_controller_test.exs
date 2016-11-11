@@ -42,7 +42,7 @@ defmodule Songbox.RoomControllerTest do
   end
 
   test "updates and renders chosen resource when data is valid", %{conn: conn, user: user} do
-    room = Repo.insert! %Room{user_id: user.id}
+    room = Repo.insert! %Room{user: user}
     conn = put conn, room_path(conn, :update, room), %{
       "meta" => %{},
       "data" => %{
@@ -54,22 +54,19 @@ defmodule Songbox.RoomControllerTest do
     }
 
     assert json_response(conn, 200)["data"]["id"]
-    assert Repo.get_by(Room, @valid_attrs)
   end
 
-  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn, user: user} do
-    room = Repo.insert! %Room{user_id: user.id}
-    conn = put conn, room_path(conn, :update, room), %{
-      "meta" => %{},
+  test "does not update room when current_user is not the owner", %{conn: conn, user: user} do
+    other_user = Repo.insert! %User{}
+    room = Repo.insert! %Room{user: other_user}
+
+    catch_error put(conn, room_path(conn, :update, room), %{
       "data" => %{
         "type" => "room",
         "id" => room.id,
-        "attributes" => @invalid_attrs,
-        "relationships" => relationships(user)
+        "attributes" => @invalid_attrs
       }
-    }
-
-    assert json_response(conn, 422)["errors"] != %{}
+    })
   end
 
   test "does not show resource and instead throw error when id is nonexistent", %{conn: conn} do
