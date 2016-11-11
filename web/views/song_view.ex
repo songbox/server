@@ -16,6 +16,10 @@ defmodule Songbox.SongView do
    :updated_at
  ]
 
+  has_one :user,
+    field: :user_id,
+    type: "user"
+
   # workaround for ja_serializer deprecation warning
   def format(song, _conn) do
     song.format

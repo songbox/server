@@ -51,17 +51,18 @@ defmodule Songbox.SongControllerTest do
     end
   end
 
-  test "creates and renders resource when data is valid", %{conn: conn} do
+  test "creates and renders resource when data is valid", %{conn: conn, user: user} do
     conn = post conn, song_path(conn, :create), %{
       "meta" => %{},
       "data" => %{
         "type" => "song",
-        "attributes" => @valid_attrs,
-        "relationships" => relationships
+        "attributes" => @valid_attrs
       }
     }
 
-    assert json_response(conn, 201)["data"]["id"]
+    data = json_response(conn, 201)["data"]
+    assert data["id"]
+    assert data["relationships"]["user"]["data"]["id"] == "#{user.id}"
     assert Repo.get_by(Song, @valid_attrs)
   end
 
