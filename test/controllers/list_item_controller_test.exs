@@ -87,6 +87,35 @@ defmodule Songbox.ListItemControllerTest do
     assert json_response(conn, 422)["errors"] != %{}
   end
 
+  test "updates and renders chosen resource when data is valid", %{conn: conn, user: user} do
+    list_item = Repo.insert! %ListItem{user_id: user.id}
+    conn = put conn, list_item_path(conn, :update, list_item), %{
+      "meta" => %{},
+      "data" => %{
+        "type" => "list_item",
+        "id" => list_item.id,
+        "attributes" => @valid_attrs,
+        "relationships" => relationships
+      }
+    }
+
+    assert json_response(conn, 200)["data"]["id"]
+    assert Repo.get_by(ListItem, @valid_attrs)
+  end
+
+  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
+    list_item = Repo.insert! %ListItem{}
+    catch_error put(conn, list_item_path(conn, :update, list_item), %{
+      "meta" => %{},
+      "data" => %{
+        "type" => "list_item",
+        "id" => list_item.id,
+        "attributes" => @invalid_attrs,
+        "relationships" => relationships
+      }
+    })
+  end
+
   test "deletes chosen resource", %{conn: conn, user: user} do
     list_item = Repo.insert! %ListItem{user_id: user.id}
     conn = delete conn, list_item_path(conn, :delete, list_item)
