@@ -6,7 +6,6 @@ defmodule Songbox.List do
 
     belongs_to :user, Songbox.User
     has_many :list_items, Songbox.ListItem
-    many_to_many :songs, Songbox.Song, join_through: :list_items
 
     timestamps()
   end
