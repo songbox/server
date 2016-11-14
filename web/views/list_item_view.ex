@@ -2,7 +2,11 @@ defmodule Songbox.ListItemView do
   use Songbox.Web, :view
   use JaSerializer.PhoenixView
 
-  attributes [:inserted_at]
+  attributes [
+    :rank,
+    :inserted_at,
+    :updated_at
+  ]
 
   has_one :list,
     field: :list_id,
