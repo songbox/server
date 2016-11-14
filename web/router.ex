@@ -33,6 +33,6 @@ defmodule Songbox.Router do
     resources "/rooms", RoomController, only: [:show, :update]
     resources "/songs", SongController, except: [:new, :edit]
     resources "/lists", ListController, except: [:new, :edit]
-    resources "/items", ListItemController, except: [:new, :edit]
+    resources "/list-items", ListItemController, except: [:new, :edit]
   end
 end
