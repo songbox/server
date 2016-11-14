@@ -64,7 +64,7 @@ defmodule Songbox.ListItemControllerTest do
     conn = post conn, list_item_path(conn, :create), %{
       "meta" => %{},
       "data" => %{
-        "type" => "list_item",
+        "type" => "list-item",
         "attributes" => @valid_attrs,
         "relationships" => relationships
       }
@@ -78,7 +78,7 @@ defmodule Songbox.ListItemControllerTest do
     conn = post conn, list_item_path(conn, :create), %{
       "meta" => %{},
       "data" => %{
-        "type" => "list_item",
+        "type" => "list-item",
         "attributes" => @invalid_attrs,
         "relationships" => %{}
       }
@@ -92,7 +92,7 @@ defmodule Songbox.ListItemControllerTest do
     conn = put conn, list_item_path(conn, :update, list_item), %{
       "meta" => %{},
       "data" => %{
-        "type" => "list_item",
+        "type" => "list-item",
         "id" => list_item.id,
         "attributes" => @valid_attrs,
         "relationships" => relationships
@@ -108,7 +108,7 @@ defmodule Songbox.ListItemControllerTest do
     catch_error put(conn, list_item_path(conn, :update, list_item), %{
       "meta" => %{},
       "data" => %{
-        "type" => "list_item",
+        "type" => "list-item",
         "id" => list_item.id,
         "attributes" => @invalid_attrs,
         "relationships" => relationships
