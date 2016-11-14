@@ -11,7 +11,7 @@ defmodule Songbox.ListItemController do
     render(conn, "index.json-api", data: list_items)
   end
 
-  def create(conn, %{"data" => data = %{"type" => "list_item", "attributes" => _list_item_params}}) do
+  def create(conn, %{"data" => data = %{"type" => "list-item", "attributes" => _list_item_params}}) do
     list_item = %ListItem{user_id: Guardian.Plug.current_resource(conn).id}
     changeset = ListItem.changeset(list_item, Params.to_attributes(data))
 
@@ -33,7 +33,7 @@ defmodule Songbox.ListItemController do
     render(conn, "show.json-api", data: list_item)
   end
 
-  def update(conn, %{"id" => id, "data" => data = %{"type" => "list_item", "attributes" => _list_item_params}}) do
+  def update(conn, %{"id" => id, "data" => data = %{"type" => "list-item", "attributes" => _list_item_params}}) do
     list_item = current_user_list_item(conn, id)
     changeset = ListItem.changeset(list_item, Params.to_attributes(data))
 
