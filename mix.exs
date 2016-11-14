@@ -54,6 +54,7 @@ defmodule Songbox.Mixfile do
       {:comeonin, "~> 2.5"},
       {:guardian, "~> 0.13.0"},
       {:ja_serializer, "~> 0.11.0"},
+      {:ecto_ordered, "~> 0.2.0-beta1"},
       # dev/test dependencies
       {:credo, "~> 0.5.2", only: :dev},
       {:junit_formatter, ">= 0.0.0"}
