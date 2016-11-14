@@ -44,7 +44,6 @@ defmodule Songbox.ListControllerTest do
     assert data["id"] == "#{list.id}"
     assert data["type"] == "list"
     assert data["attributes"]["name"] == list.name
-    assert data["relationships"]["user"]["data"]["id"] == "#{list.user_id}"
   end
 
   test "does not show resource and instead throw error when id is nonexistent", %{conn: conn} do
