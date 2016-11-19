@@ -1,7 +1,11 @@
 defmodule Songbox.RegistrationController do
   use Songbox.Web, :controller
 
-  alias Songbox.User
+  alias Songbox.{
+    User,
+    UserService,
+    Repo
+  }
 
   def create(conn, %{
     "data" => %{
@@ -13,14 +17,18 @@ defmodule Songbox.RegistrationController do
       }
     }}) do
 
-    changeset = User.changeset(%User{}, %{
+    params = %{
       email: email,
       password: password,
       password_confirmation: password_confirmation
-    })
+    }
 
-    case Repo.insert changeset do
-      {:ok, user} ->
+    result = params
+             |> UserService.insert
+             |> Repo.transaction
+
+    case result do
+      {:ok, %{user: user}} ->
         conn
         |> put_status(:created)
         |> render(Songbox.UserView, "show.json-api", data: user)
