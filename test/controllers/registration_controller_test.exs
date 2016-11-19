@@ -28,7 +28,7 @@ defmodule Songbox.RegistrationControllerTest do
       }
     }
     assert json_response(conn, 201)["data"]["id"]
-    assert Repo.get_by(User, %{email: @valid_attrs[:email]})
+    assert Repo.get_by(User, email: @valid_attrs[:email])
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
