@@ -20,3 +20,10 @@ config :songbox, Songbox.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "16") # heroku's limit is 20 for 'hobby dev'
+
+# Configure Sentry
+config :sentry,
+  dsn: System.get_env("SENTRY_DSN"),
+  included_environments: [:prod],
+  environment_name: Mix.env
+

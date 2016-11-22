@@ -1,6 +1,9 @@
 defmodule Songbox.Router do
   use Songbox.Web, :router
 
+  use Plug.ErrorHandler
+  use Sentry.Plug
+
   # Unauthenticated Requests
   pipeline :api do
     plug :accepts, ["json", "json-api"]

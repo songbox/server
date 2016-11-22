@@ -29,7 +29,8 @@ defmodule Songbox.Mixfile do
         :gettext,
         :phoenix_ecto,
         :postgrex,
-        :comeonin
+        :comeonin,
+        :sentry
       ]
     ]
   end
@@ -57,7 +58,9 @@ defmodule Songbox.Mixfile do
       {:ecto_ordered, "~> 0.2.0-beta1"},
       # dev/test dependencies
       {:credo, "~> 0.5.2", only: :dev},
-      {:junit_formatter, ">= 0.0.0"}
+      {:junit_formatter, ">= 0.0.0"},
+      #
+      {:sentry, "~> 1.0"}
     ]
   end
 
