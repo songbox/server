@@ -23,6 +23,7 @@ config :songbox, Songbox.Repo,
 
 # Configure Sentry
 config :sentry,
+  use_error_logger: true,
   dsn: System.get_env("SENTRY_DSN"),
   included_environments: [:prod],
   environment_name: Mix.env
