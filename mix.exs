@@ -25,12 +25,12 @@ defmodule Songbox.Mixfile do
         :phoenix,
         :phoenix_pubsub,
         :cowboy,
+        :sentry,
         :logger,
         :gettext,
         :phoenix_ecto,
         :postgrex,
-        :comeonin,
-        :sentry
+        :comeonin
       ]
     ]
   end
