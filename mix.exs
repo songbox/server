@@ -60,7 +60,7 @@ defmodule Songbox.Mixfile do
       {:credo, "~> 0.5.2", only: :dev},
       {:junit_formatter, ">= 0.0.0"},
       #
-      {:sentry, "~> 1.0"}
+      {:sentry, "~> 2.0"}
     ]
   end
 
