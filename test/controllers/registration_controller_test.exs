@@ -4,7 +4,12 @@ defmodule Songbox.RegistrationControllerTest do
   alias Songbox.User
   alias Songbox.Repo
 
-  @valid_attrs %{
+  @valid_jsonapi_attrs %{
+    email: "john.doe@example.com",
+    password: "asdfjkl123",
+    "password-confirmation": "asdfjkl123"
+  }
+  @valid_db_attrs %{
     email: "john.doe@example.com",
     password: "asdfjkl123",
     password_confirmation: "asdfjkl123"
@@ -24,11 +29,11 @@ defmodule Songbox.RegistrationControllerTest do
     conn = post conn, registration_path(conn, :create), %{
       data: %{
         type: "user",
-        attributes: @valid_attrs
+        attributes: @valid_jsonapi_attrs
       }
     }
     assert json_response(conn, 201)["data"]["id"]
-    assert Repo.get_by(User, email: @valid_attrs[:email])
+    assert Repo.get_by(User, email: @valid_db_attrs[:email])
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
@@ -41,5 +46,4 @@ defmodule Songbox.RegistrationControllerTest do
 
     assert json_response(conn, 422)["errors"] != %{}
   end
-
 end

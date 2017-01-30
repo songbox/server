@@ -7,6 +7,7 @@ defmodule Songbox.Router do
   # Unauthenticated Requests
   pipeline :api do
     plug :accepts, ["json", "json-api"]
+    plug JaSerializer.Deserializer
   end
 
   # Authenticated Requests
