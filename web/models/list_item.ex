@@ -10,7 +10,7 @@ defmodule Songbox.ListItem do
     belongs_to :song, Songbox.Song
     belongs_to :user, Songbox.User
 
-    timestamps
+    timestamps()
   end
 
   @doc """
