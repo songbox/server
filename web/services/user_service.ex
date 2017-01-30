@@ -14,10 +14,12 @@ defmodule Songbox.UserService do
   end
 
   defp insert_user(multi, user_params) do
-    changeset = %User{}
-                |> User.changeset(user_params)
-                |> put_assoc(:room, %Room{})
-    Multi.insert(multi, :user, changeset)
+    room_changeset = %Room{}
+                     |> Room.changeset()
+    user_changeset = %User{}
+                     |> User.changeset(user_params)
+                     |> put_assoc(:room, room_changeset)
+    Multi.insert(multi, :user, user_changeset)
   end
 
 end

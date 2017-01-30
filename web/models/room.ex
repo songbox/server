@@ -12,10 +12,19 @@ defmodule Songbox.Room do
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
-  def changeset(struct, params \\ %{}) do
+  def changeset(struct, params) do
     struct
     |> cast(params, [:user_id])
     |> validate_required([:user_id])
+    |> changeset()
+  end
+
+  @doc """
+  Builds a changeset based on the `struct`
+  """
+  def changeset(struct) do
+    struct
+    |> change()
     |> generate_uid()
     |> validate_length(:uid, min: 7)
     |> unique_constraint(:uid)

@@ -16,9 +16,13 @@ defmodule Songbox.UserServiceTest do
     {:ok, _} = @valid_attrs
                |> UserService.insert
                |> Repo.transaction
+
     user = Repo.get_by(User, email: @valid_attrs[:email])
-    assert user, "creates a user"
-    assert Repo.get_by(Room, user_id: user.id), "created a room"
+    assert user, "created a user"
+
+    room = Repo.get_by(Room, user_id: user.id)
+    assert room, "created a room"
+    assert room.uid, "added a uid to room"
   end
 
 end
