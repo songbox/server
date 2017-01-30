@@ -4,7 +4,6 @@ defmodule Songbox.UserTest do
   alias Songbox.User
 
   @valid_attrs %{email: "john.doe@example.com", password: "abcde12345", password_confirmation: "abcde12345"}
-  @invalid_attrs %{}
 
   test "changeset with valid attributes" do
     changeset = User.changeset(%User{}, @valid_attrs)

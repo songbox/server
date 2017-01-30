@@ -11,7 +11,6 @@ defmodule Songbox.UserServiceTest do
   }
 
   @valid_attrs %{email: "john.doe@example.com", password: "abcde12345", password_confirmation: "abcde12345"}
-  @invalid_attrs %{}
 
   test "'insert' creates user with room" do
     {:ok, _} = @valid_attrs

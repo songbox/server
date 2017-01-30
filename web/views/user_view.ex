@@ -10,7 +10,7 @@ defmodule Songbox.UserView do
 
   has_one :room, serializer: Songbox.RoomView, include: true
 
-  def room(struct, conn) do
+  def room(struct, _conn) do
     case struct.room do
       %Ecto.Association.NotLoaded{} ->
         struct

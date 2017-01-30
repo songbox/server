@@ -7,13 +7,6 @@ defmodule Songbox.UserControllerTest do
     Repo
   }
 
-  @valid_attrs %{
-    email: "john.doe@example.com",
-    password: "asdfjkl123",
-    password_confirmation: "asdfjkl123"
-  }
-  @invalid_attrs %{}
-
   setup do
     user = Repo.insert! %User{}
     { :ok, jwt, _ } = Guardian.encode_and_sign(user, :token)

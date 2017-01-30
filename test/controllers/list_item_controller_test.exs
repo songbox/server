@@ -66,7 +66,7 @@ defmodule Songbox.ListItemControllerTest do
       "data" => %{
         "type" => "list-item",
         "attributes" => @valid_attrs,
-        "relationships" => relationships
+        "relationships" => relationships()
       }
     }
 
@@ -95,7 +95,7 @@ defmodule Songbox.ListItemControllerTest do
         "type" => "list-item",
         "id" => list_item.id,
         "attributes" => @valid_attrs,
-        "relationships" => relationships
+        "relationships" => relationships()
       }
     }
 
@@ -111,7 +111,7 @@ defmodule Songbox.ListItemControllerTest do
         "type" => "list-item",
         "id" => list_item.id,
         "attributes" => @invalid_attrs,
-        "relationships" => relationships
+        "relationships" => relationships()
       }
     })
   end

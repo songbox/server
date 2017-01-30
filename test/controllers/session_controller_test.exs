@@ -9,8 +9,6 @@ defmodule Songbox.SessionControllerTest do
     password_confirmation: "asdfjkl123"
   }
 
-  @invalid_attrs %{}
-
   setup do
     conn = build_conn()
       |> put_req_header("content-type", "application/json")

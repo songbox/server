@@ -58,7 +58,7 @@ defmodule Songbox.ListControllerTest do
       "data" => %{
         "type" => "list",
         "attributes" => @valid_attrs,
-        "relationships" => relationships
+        "relationships" => relationships()
       }
     }
 
@@ -72,7 +72,7 @@ defmodule Songbox.ListControllerTest do
       "data" => %{
         "type" => "list",
         "attributes" => @invalid_attrs,
-        "relationships" => relationships
+        "relationships" => relationships()
       }
     }
 
@@ -87,7 +87,7 @@ defmodule Songbox.ListControllerTest do
         "type" => "list",
         "id" => list.id,
         "attributes" => @valid_attrs,
-        "relationships" => relationships
+        "relationships" => relationships()
       }
     }
 
@@ -103,7 +103,7 @@ defmodule Songbox.ListControllerTest do
         "type" => "list",
         "id" => list.id,
         "attributes" => @invalid_attrs,
-        "relationships" => relationships
+        "relationships" => relationships()
       }
     }
 
