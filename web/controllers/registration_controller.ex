@@ -2,26 +2,13 @@ defmodule Songbox.RegistrationController do
   use Songbox.Web, :controller
 
   alias Songbox.{
-    User,
     UserService,
     Repo
   }
+  alias JaSerializer.Params
 
-  def create(conn, %{
-    "data" => %{
-      "type" => "user",
-      "attributes" => %{
-        "email" => email,
-        "password" => password,
-        "password_confirmation" => password_confirmation
-      }
-    }}) do
-
-    params = %{
-      email: email,
-      password: password,
-      password_confirmation: password_confirmation
-    }
+  def create(conn, %{"data" => data}) do
+    params = Params.to_attributes(data)
 
     result = params
              |> UserService.insert
@@ -32,7 +19,7 @@ defmodule Songbox.RegistrationController do
         conn
         |> put_status(:created)
         |> render(Songbox.UserView, "show.json-api", data: user)
-      {:error, changeset} ->
+      {:error, :user, changeset, _} ->
         conn
         |> put_status(:unprocessable_entity)
         |> render(Songbox.UserView, :errors, data: changeset)
