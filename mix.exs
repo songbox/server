@@ -57,7 +57,7 @@ defmodule Songbox.Mixfile do
       {:ja_serializer, "~> 0.11.0"},
       {:ecto_ordered, "~> 0.2.0-beta1"},
       # dev/test dependencies
-      {:mix_test_watch, "~> 0.2", only: :dev},
+      {:mix_test_watch, "~> 0.2.6", only: :dev},
       {:ex_unit_notifier, "~> 0.1", only: :test},
       {:credo, "~> 0.6.0", only: :dev},
       {:junit_formatter, ">= 0.0.0"},
