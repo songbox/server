@@ -50,7 +50,17 @@ config :sentry,
   environment_name: Mix.env,
   use_error_logger: true
 
+config :ex_admin,
+  repo: Songbox.Repo,
+  module: Songbox,    # Songbox.Web for phoenix >= 1.3.0-rc
+  modules: [
+    Songbox.ExAdmin.Dashboard,
+  ]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
+
+
+config :xain, :after_callback, {Phoenix.HTML, :raw}
 

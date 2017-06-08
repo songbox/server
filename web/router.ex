@@ -1,5 +1,6 @@
 defmodule Songbox.Router do
   use Songbox.Web, :router
+  use ExAdmin.Router
 
   use Plug.ErrorHandler
   use Sentry.Plug
@@ -38,5 +39,18 @@ defmodule Songbox.Router do
     resources "/songs", SongController, except: [:new, :edit]
     resources "/lists", ListController, except: [:new, :edit]
     resources "/list-items", ListItemController, except: [:new, :edit]
+  end
+
+  pipeline :browser do
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_flash
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+  end
+
+  scope "/admin", ExAdmin do
+    pipe_through :browser
+    admin_routes()
   end
 end

@@ -24,6 +24,7 @@ defmodule Songbox.Mixfile do
       applications: [
         :phoenix,
         :phoenix_pubsub,
+        :phoenix_html,
         :cowboy,
         :sentry,
         :logger,
@@ -56,6 +57,8 @@ defmodule Songbox.Mixfile do
       {:guardian, "~> 0.13.0"},
       {:ja_serializer, "~> 0.11.0"},
       {:ecto_ordered, "~> 0.2.0-beta1"},
+      # admin
+      {:ex_admin, github: "smpallen99/ex_admin"},
       # dev/test dependencies
       {:mix_test_watch, "~> 0.2.6", only: :dev},
       {:ex_unit_notifier, "~> 0.1", only: :test},
