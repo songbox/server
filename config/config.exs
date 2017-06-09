@@ -55,7 +55,9 @@ config :ex_admin,
   module: Songbox,    # Songbox.Web for phoenix >= 1.3.0-rc
   modules: [
     Songbox.ExAdmin.Dashboard,
-    Songbox.ExAdmin.User
+    Songbox.ExAdmin.User,
+    Songbox.ExAdmin.Room,
+    Songbox.ExAdmin.Song,
   ]
 
 config :basic_auth, :admin_auth, [

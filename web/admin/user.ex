@@ -7,7 +7,7 @@ defmodule Songbox.ExAdmin.User do
       selectable_column()
 
       column :id
-      column :email
+      column :email, link: true
       column :inserted_at
       actions()
     end
