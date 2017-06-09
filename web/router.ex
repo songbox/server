@@ -41,7 +41,8 @@ defmodule Songbox.Router do
     resources "/list-items", ListItemController, except: [:new, :edit]
   end
 
-  pipeline :browser do
+  pipeline :browser_auth do
+    plug BasicAuth, use_config: {:basic_auth, :admin_auth}
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
@@ -50,7 +51,7 @@ defmodule Songbox.Router do
   end
 
   scope "/admin", ExAdmin do
-    pipe_through :browser
+    pipe_through :browser_auth
     admin_routes()
   end
 end

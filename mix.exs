@@ -59,6 +59,7 @@ defmodule Songbox.Mixfile do
       {:ecto_ordered, "~> 0.2.0-beta1"},
       # admin
       {:ex_admin, github: "smpallen99/ex_admin"},
+      {:basic_auth, "~> 2.0.0"},
       # dev/test dependencies
       {:mix_test_watch, "~> 0.2.6", only: :dev},
       {:ex_unit_notifier, "~> 0.1", only: :test},

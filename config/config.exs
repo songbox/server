@@ -57,6 +57,12 @@ config :ex_admin,
     Songbox.ExAdmin.Dashboard,
   ]
 
+config :basic_auth, :admin_auth, [
+  username: {:system, "ADMIN_USERNAME"},
+  password: {:system, "ADMIN_PASSWORD"},
+  realm: "Admin Area"
+]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
