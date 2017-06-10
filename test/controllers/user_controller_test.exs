@@ -32,7 +32,7 @@ defmodule Songbox.UserControllerTest do
 
   test "updates password and renders current user when data is valid", %{conn: conn, user: user} do
     attributes = %{
-      email: "john.doe@test.com",
+      email: "other@test.com",
       password: "12345678",
       password_confirmation: "12345678"
     }
@@ -47,7 +47,8 @@ defmodule Songbox.UserControllerTest do
     }
 
     assert json_response(conn, 200)["data"]["id"]
-    assert Repo.get_by(User, %{ email: "john.doe@test.com" })
+    assert user.email == Repo.get(User, user.id).email, 'email has not changed'
+    refute user.password_hash == Repo.get(User, user.id).password_hash, 'password hash has changed'
   end
 
 end

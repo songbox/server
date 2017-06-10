@@ -13,7 +13,7 @@ defmodule Songbox.UserController do
 
   def update_current(conn, %{"data" => data = %{"type" => "user", "attributes" => _list_params}}) do
     user = Guardian.Plug.current_resource(conn)
-    changeset = User.changeset(user, Params.to_attributes(data))
+    changeset = User.change_password_changeset(user, Params.to_attributes(data))
 
     case Repo.update(changeset) do
       {:ok, user} ->

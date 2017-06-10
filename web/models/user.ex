@@ -31,6 +31,15 @@ defmodule Songbox.User do
     |> unique_constraint(:email)
   end
 
+  def change_password_changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [:password, :password_confirmation])
+    |> validate_required([:password, :password_confirmation])
+    |> validate_length(:password, min: 8)
+    |> validate_confirmation(:password)
+    |> hash_password
+  end
+
   defp hash_password(%{valid?: false} = changeset), do: changeset
   defp hash_password(%{valid?: true} = changeset) do
     password = get_field(changeset, :password)
