@@ -14,7 +14,7 @@ use Mix.Config
 config :songbox, Songbox.Endpoint,
   http: [port: {:system, "PORT"}],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
-  url: [host: "api.songbox.co", port: 443]
+  url: [host: "api.songbox.co", scheme: "https", port: 443]
 
 # Do not print debug messages in production
 #config :logger, level: :info
