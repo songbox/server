@@ -34,8 +34,10 @@ defmodule Songbox.Router do
   scope "/api", Songbox do
     pipe_through :api_auth
 
-    get "/user/current", UserController, :show_current
-    put "/user/current", UserController, :update_current
+    get "/user/current", UserController, :show_current # DEPRECATED
+    get "/users/current", UserController, :show_current
+    put "/users/current", UserController, :update_current
+    patch "/users/current", UserController, :update_current
 
     resources "/rooms", RoomController, only: [:show, :update]
     resources "/songs", SongController, except: [:new, :edit]

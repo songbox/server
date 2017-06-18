@@ -37,7 +37,7 @@ defmodule Songbox.UserControllerTest do
       password_confirmation: "12345678"
     }
 
-    conn = put conn, user_path(conn, :update_current), %{
+    conn = patch conn, user_path(conn, :update_current), %{
       "meta" => %{},
       "data" => %{
         "type" => "user",
