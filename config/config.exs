@@ -63,7 +63,7 @@ config :ex_admin,
 config :basic_auth, :admin_auth, [
   username: {:system, "ADMIN_USERNAME"},
   password: {:system, "ADMIN_PASSWORD"},
-  realm: "Admin Area"
+  realm: "Songbox Admin"
 ]
 
 # Import environment specific config. This must remain at the bottom
