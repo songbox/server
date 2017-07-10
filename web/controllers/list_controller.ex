@@ -7,7 +7,12 @@ defmodule Songbox.ListController do
   plug :scrub_params, "data" when action in [:create, :update]
 
   def index(conn, _params) do
-    lists = Repo.all(List)
+    current_user = Guardian.Plug.current_resource(conn)
+
+    lists = List
+            |> where(user_id: ^current_user.id)
+            |> Repo.all
+
     render(conn, "index.json-api", data: lists)
   end
 

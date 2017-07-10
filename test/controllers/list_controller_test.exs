@@ -32,12 +32,27 @@ defmodule Songbox.ListControllerTest do
     }
   end
 
-  test "lists all entries on index", %{conn: conn} do
+  test "'GET /lists' lists all entries on index", %{conn: conn} do
     conn = get conn, list_path(conn, :index)
     assert json_response(conn, 200)["data"] == []
   end
 
-  test "shows chosen resource", %{conn: conn, user: user} do
+  test "'GET /lists' does not show lists of other users", %{conn: conn, user: user} do
+    list = Repo.insert! %List{user_id: user.id, name: "List1"}
+
+    other_user = Repo.insert! %Songbox.User{}
+    other_list = Repo.insert! %List{user_id: other_user.id, name: "List2"}
+
+    conn = get conn, list_path(conn, :index)
+    data = json_response(conn, 200)["data"]
+    assert length(data) == 1
+    data = Enum.at(data, 0)
+    assert data["id"] == "#{list.id}"
+    assert data["type"] == "list"
+    assert data["attributes"]["name"] == list.name
+  end
+
+  test "'GET /lists/1' shows chosen resource", %{conn: conn, user: user} do
     list = Repo.insert! %List{user_id: user.id}
     conn = get conn, list_path(conn, :show, list)
     data = json_response(conn, 200)["data"]
