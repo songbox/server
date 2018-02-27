@@ -1,4 +1,4 @@
-defmodule SongboxWeb.ExAdmin.Dashboard do
+defmodule Songbox.ExAdmin.Dashboard do
   use ExAdmin.Register
 
   register_page "Dashboard" do

@@ -52,7 +52,7 @@ config :sentry,
 
 config :ex_admin,
   repo: Songbox.Repo,
-  module: Songbox,    # Songbox.Web for phoenix >= 1.3.0-rc
+  module: SongboxWeb,
   modules: [
     Songbox.ExAdmin.Dashboard,
     Songbox.ExAdmin.User,
