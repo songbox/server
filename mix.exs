@@ -63,7 +63,7 @@ defmodule Songbox.Mixfile do
       # dev/test dependencies
       {:mix_test_watch, "~> 0.2.6", only: :dev},
       {:ex_unit_notifier, "~> 0.1", only: :test},
-      {:credo, "~> 0.6.0", only: :dev},
+      {:credo, "~> 0.9.0-rc1", only: [:dev, :test], runtime: false},
       {:junit_formatter, ">= 0.0.0"},
       #
       {:sentry, "~> 2.0"}
