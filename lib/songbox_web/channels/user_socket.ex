@@ -1,4 +1,4 @@
-defmodule Songbox.UserSocket do
+defmodule SongboxWeb.UserSocket do
   use Phoenix.Socket
   import Guardian.Phoenix.Socket
 

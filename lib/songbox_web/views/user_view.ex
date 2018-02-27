@@ -1,4 +1,4 @@
-defmodule Songbox.UserView do
+defmodule SongboxWeb.UserView do
   use Songbox.Web, :view
   use JaSerializer.PhoenixView
 
@@ -8,7 +8,7 @@ defmodule Songbox.UserView do
     :email
   ]
 
-  has_one :room, serializer: Songbox.RoomView, include: true
+  has_one :room, serializer: SongboxWeb.RoomView, include: true
 
   def room(struct, _conn) do
     case struct.room do

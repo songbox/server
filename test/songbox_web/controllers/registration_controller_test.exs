@@ -1,5 +1,5 @@
 defmodule Songbox.RegistrationControllerTest do
-  use Songbox.ConnCase
+  use SongboxWeb.ConnCase
 
   alias Songbox.User
   alias Songbox.Repo

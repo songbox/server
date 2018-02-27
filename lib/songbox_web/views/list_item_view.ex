@@ -1,4 +1,4 @@
-defmodule Songbox.ListItemView do
+defmodule SongboxWeb.ListItemView do
   use Songbox.Web, :view
   use JaSerializer.PhoenixView
 

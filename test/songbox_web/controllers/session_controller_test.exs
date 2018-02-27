@@ -1,5 +1,5 @@
 defmodule Songbox.SessionControllerTest do
-  use Songbox.ConnCase
+  use SongboxWeb.ConnCase
 
   alias Songbox.User
 

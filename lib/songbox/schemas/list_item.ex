@@ -1,5 +1,6 @@
 defmodule Songbox.ListItem do
-  use Songbox.Web, :model
+  use Ecto.Schema
+  import Ecto.Changeset
   import EctoOrdered
 
   schema "list_items" do

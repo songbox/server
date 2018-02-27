@@ -1,4 +1,4 @@
-defmodule Songbox.ListView do
+defmodule SongboxWeb.ListView do
   use Songbox.Web, :view
   use JaSerializer.PhoenixView
 
@@ -12,7 +12,7 @@ defmodule Songbox.ListView do
     :updated_at
   ]
 
-  has_many :list_items, serializer: Songbox.ListItemView, include: true
+  has_many :list_items, serializer: SongboxWeb.ListItemView, include: true
 
   def list_items(list, _conn) do
     case list.list_items do

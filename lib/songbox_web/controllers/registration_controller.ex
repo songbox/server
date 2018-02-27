@@ -1,4 +1,4 @@
-defmodule Songbox.RegistrationController do
+defmodule SongboxWeb.RegistrationController do
   use Songbox.Web, :controller
 
   alias Songbox.{
@@ -18,11 +18,11 @@ defmodule Songbox.RegistrationController do
       {:ok, %{user: user}} ->
         conn
         |> put_status(:created)
-        |> render(Songbox.UserView, "show.json-api", data: user)
+        |> render(SongboxWeb.UserView, "show.json-api", data: user)
       {:error, :user, changeset, _} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(Songbox.UserView, "errors.json-api", data: changeset)
+        |> render(SongboxWeb.UserView, "errors.json-api", data: changeset)
     end
   end
 

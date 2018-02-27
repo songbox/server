@@ -1,4 +1,4 @@
-defmodule Songbox.SessionController do
+defmodule SongboxWeb.SessionController do
   use Songbox.Web, :controller
 
   import Ecto.Query, only: [where: 2]
@@ -29,7 +29,7 @@ defmodule Songbox.SessionController do
           Logger.warn "User " <> username <> " just failed to login"
           conn
           |> put_status(401)
-          |> render(Songbox.ErrorView, "401.json")
+          |> render(SongboxWeb.ErrorView, "401.json")
       end
     rescue
       e ->
@@ -37,7 +37,7 @@ defmodule Songbox.SessionController do
         Logger.error "Unexpected error while attempting to login user " <> username
         conn
         |> put_status(401)
-        |> render(Songbox.ErrorView, "401.json")
+        |> render(SongboxWeb.ErrorView, "401.json")
     end
   end
 

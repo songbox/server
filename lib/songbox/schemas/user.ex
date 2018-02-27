@@ -1,5 +1,6 @@
 defmodule Songbox.User do
-  use Songbox.Web, :model
+  use Ecto.Schema
+  import Ecto.Changeset
 
   schema "users" do
     field :email, :string

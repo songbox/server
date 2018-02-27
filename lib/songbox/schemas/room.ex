@@ -1,5 +1,7 @@
 defmodule Songbox.Room do
-  use Songbox.Web, :model
+  use Ecto.Schema
+  import Ecto.Changeset
+  import Ecto.Query
 
   schema "rooms" do
     field :uid, :string

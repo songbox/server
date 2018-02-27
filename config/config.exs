@@ -21,10 +21,10 @@ config :mime, :types, %{
 }
 
 # Configures the endpoint
-config :songbox, Songbox.Endpoint,
+config :songbox, SongboxWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "JDjBUeE6jtPrATQVZivmZSg6YAxy3akn2U9oi5Z9HoimJSD2n9FySiRKm5MQo84l",
-  render_errors: [view: Songbox.ErrorView, accepts: ~w(json)],
+  render_errors: [view: SongboxWeb.ErrorView, accepts: ~w(json)],
   pubsub: [name: Songbox.PubSub,
            adapter: Phoenix.PubSub.PG2]
 

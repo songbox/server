@@ -11,7 +11,7 @@ defmodule Songbox do
       # Start the Ecto repository
       supervisor(Songbox.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(Songbox.Endpoint, []),
+      supervisor(SongboxWeb.Endpoint, []),
       # Start your own worker by calling: Songbox.Worker.start_link(arg1, arg2, arg3)
       # worker(Songbox.Worker, [arg1, arg2, arg3]),
     ]
@@ -25,7 +25,7 @@ defmodule Songbox do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    Songbox.Endpoint.config_change(changed, removed)
+    SongboxWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

@@ -1,4 +1,4 @@
-defmodule Songbox.ChangesetView do
+defmodule SongboxWeb.ChangesetView do
   use Songbox.Web, :view
 
   @doc """

@@ -1,8 +1,8 @@
-defmodule Songbox.Endpoint do
+defmodule SongboxWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :songbox
 
-  socket "/socket/user", Songbox.UserSocket
-  socket "/socket/viewer", Songbox.ViewerSocket
+  socket "/socket/user", SongboxWeb.UserSocket
+  socket "/socket/viewer", SongboxWeb.ViewerSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -39,5 +39,5 @@ defmodule Songbox.Endpoint do
     key: "_songbox_key",
     signing_salt: "jgjq+smO"
 
-  plug Songbox.Router
+  plug SongboxWeb.Router
 end

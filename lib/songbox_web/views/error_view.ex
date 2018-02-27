@@ -1,4 +1,4 @@
-defmodule Songbox.ErrorView do
+defmodule SongboxWeb.ErrorView do
   use Songbox.Web, :view
   use JaSerializer.PhoenixView
 

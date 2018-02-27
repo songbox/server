@@ -1,4 +1,4 @@
-defmodule Songbox.Gettext do
+defmodule SongboxWeb.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 

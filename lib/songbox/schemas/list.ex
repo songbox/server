@@ -1,5 +1,6 @@
 defmodule Songbox.List do
-  use Songbox.Web, :model
+  use Ecto.Schema
+  import Ecto.Changeset
 
   schema "lists" do
     field :name, :string

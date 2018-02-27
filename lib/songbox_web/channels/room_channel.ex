@@ -1,4 +1,4 @@
-defmodule Songbox.RoomChannel do
+defmodule SongboxWeb.RoomChannel do
   use Songbox.Web, :channel
 
   def join("room:" <> room_uid, _payload, socket) do

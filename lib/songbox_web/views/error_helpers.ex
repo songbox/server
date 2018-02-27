@@ -1,4 +1,4 @@
-defmodule Songbox.ErrorHelpers do
+defmodule SongboxWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """

@@ -16,39 +16,30 @@ defmodule Songbox.Web do
   below.
   """
 
-  def model do
-    quote do
-      use Ecto.Schema
-
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
-    end
-  end
-
   def controller do
     quote do
-      use Phoenix.Controller
+      use Phoenix.Controller, namespace: SongboxWeb
 
       alias Songbox.Repo
       import Ecto
       import Ecto.Query
 
-      import Songbox.Router.Helpers
-      import Songbox.Gettext
+      import SongboxWeb.Router.Helpers
+      import SongboxWeb.Gettext
     end
   end
 
   def view do
     quote do
-      use Phoenix.View, root: "web/templates"
+      use Phoenix.View, root: "lib/songbox_web/templates",
+                        namespace: SongboxWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
 
-      import Songbox.Router.Helpers
-      import Songbox.ErrorHelpers
-      import Songbox.Gettext
+      import SongboxWeb.Router.Helpers
+      import SongboxWeb.ErrorHelpers
+      import SongboxWeb.Gettext
     end
   end
 
@@ -62,10 +53,10 @@ defmodule Songbox.Web do
     quote do
       use Phoenix.Channel
 
-      alias Songbox.Repo
+      alias SongboxWeb.Repo
       import Ecto
       import Ecto.Query
-      import Songbox.Gettext
+      import SongboxWeb.Gettext
     end
   end
 

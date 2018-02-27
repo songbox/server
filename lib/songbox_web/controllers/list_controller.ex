@@ -1,4 +1,4 @@
-defmodule Songbox.ListController do
+defmodule SongboxWeb.ListController do
   use Songbox.Web, :controller
 
   alias Songbox.List

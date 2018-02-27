@@ -1,4 +1,4 @@
-defmodule Songbox.Router do
+defmodule SongboxWeb.Router do
   use Songbox.Web, :router
   use ExAdmin.Router
 
@@ -21,7 +21,7 @@ defmodule Songbox.Router do
     plug JaSerializer.Deserializer
   end
 
-  scope "/api", Songbox do
+  scope "/api", SongboxWeb do
     pipe_through :api
 
     # registration
@@ -31,7 +31,7 @@ defmodule Songbox.Router do
     post "/token", SessionController, :create, as: :login
   end
 
-  scope "/api", Songbox do
+  scope "/api", SongboxWeb do
     pipe_through :api_auth
 
     get "/user/current", UserController, :show_current # DEPRECATED

@@ -1,5 +1,5 @@
 defmodule Songbox.ListControllerTest do
-  use Songbox.ConnCase
+  use SongboxWeb.ConnCase
 
   alias Songbox.List
   alias Songbox.Repo
