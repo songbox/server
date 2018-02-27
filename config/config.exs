@@ -54,10 +54,10 @@ config :ex_admin,
   repo: Songbox.Repo,
   module: SongboxWeb,
   modules: [
-    Songbox.ExAdmin.Dashboard,
-    Songbox.ExAdmin.User,
-    Songbox.ExAdmin.Room,
-    Songbox.ExAdmin.Song,
+    SongboxWeb.ExAdmin.Dashboard,
+    SongboxWeb.ExAdmin.User,
+    SongboxWeb.ExAdmin.Room,
+    SongboxWeb.ExAdmin.Song,
   ]
 
 config :basic_auth, :admin_auth, [

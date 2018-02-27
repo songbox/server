@@ -1,4 +1,4 @@
-defmodule Songbox.ExAdmin.Song do
+defmodule SongboxWeb.ExAdmin.Song do
   use ExAdmin.Register
 
   register_resource Songbox.Song do
