@@ -1,4 +1,4 @@
-defmodule Songbox.GuardianSerializer do
+defmodule SongboxWeb.GuardianSerializer do
   @behaviour Guardian.Serializer
 
   alias Songbox.Repo

@@ -36,7 +36,7 @@ config :guardian, Guardian,
   ttl: { 30, :days },
   verify_issuer: true, # optional
   secret_key: "MHYI1P5y5cwpukEsOguYySh2fvkf/twdm3HKIF4bVXqmUk6TVsKQAwhnXIfsAQcs",
-  serializer: Songbox.GuardianSerializer
+  serializer: SongboxWeb.GuardianSerializer
 
 # Configures Elixir's Logger
 config :logger, :console,
