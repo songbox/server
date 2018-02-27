@@ -55,7 +55,7 @@ defmodule Songbox.Mixfile do
       {:cors_plug, "~> 1.1"},
       {:comeonin, "~> 2.5"},
       {:guardian, "~> 0.14.0"},
-      {:ja_serializer, "~> 0.11.0"},
+      {:ja_serializer, "~> 0.12.0"},
       {:ecto_ordered, "~> 0.2.0-beta1"},
       # admin
       {:ex_admin, github: "smpallen99/ex_admin"},
