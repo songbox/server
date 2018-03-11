@@ -27,6 +27,6 @@ defmodule SongboxWeb.RoomChannel do
 
   # users are authorized, viewers not
   defp authorized?(socket) do
-    socket.handler == Songbox.UserSocket
+    socket.handler == SongboxWeb.UserSocket
   end
 end

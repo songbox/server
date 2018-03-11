@@ -53,7 +53,7 @@ defmodule Songbox.Web do
     quote do
       use Phoenix.Channel
 
-      alias SongboxWeb.Repo
+      alias Songbox.Repo
       import Ecto
       import Ecto.Query
       import SongboxWeb.Gettext

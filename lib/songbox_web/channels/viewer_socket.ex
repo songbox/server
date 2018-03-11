@@ -2,7 +2,7 @@ defmodule SongboxWeb.ViewerSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel "room:*", Songbox.RoomChannel
+  channel "room:*", SongboxWeb.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket, timeout: 45_000, check_origin: ["https://beta.songbox.co", "https://app.songbox.co"]

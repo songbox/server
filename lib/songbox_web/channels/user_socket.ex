@@ -2,7 +2,7 @@ defmodule SongboxWeb.UserSocket do
   use Phoenix.Socket
   import Guardian.Phoenix.Socket
 
-  channel "room:*", Songbox.RoomChannel
+  channel "room:*", SongboxWeb.RoomChannel
 
   transport :websocket, Phoenix.Transports.WebSocket, timeout: 45_000, check_origin: ["https://beta.songbox.co", "https://app.songbox.co"]
 
