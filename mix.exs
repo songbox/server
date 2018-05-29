@@ -24,7 +24,6 @@ defmodule Songbox.Mixfile do
       applications: [
         :phoenix,
         :phoenix_pubsub,
-        :phoenix_html,
         :cowboy,
         :sentry,
         :logger,
