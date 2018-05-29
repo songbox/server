@@ -1,6 +1,6 @@
 # Songbox
 
-[![Build Status](https://travis-ci.org/songbox/server.svg?branch=master)](https://travis-ci.org/songbox/server)
+[![CircleCI](https://circleci.com/gh/songbox/server/tree/master.svg?style=svg)](https://circleci.com/gh/songbox/server/tree/master)
 
 To start your Phoenix app:
 
