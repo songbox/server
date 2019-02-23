@@ -3,10 +3,10 @@ exports.config = {
   files: {
     javascripts: {
       joinTo: {
-        "js/app.js": /^(web\/static\/js)|(node_modules)/,
-        "js/ex_admin_common.js": ["web/static/vendor/ex_admin_common.js"],
-        "js/admin_lte2.js": ["web/static/vendor/admin_lte2.js"],
-        "js/jquery.min.js": ["web/static/vendor/jquery.min.js"],
+        "js/app.js": /^(lib\/songbox_web\/static\/js)|(node_modules)/,
+        "js/ex_admin_common.js": ["lib/songbox_web/static/vendor/ex_admin_common.js"],
+        "js/admin_lte2.js": ["lib/songbox_web/static/vendor/admin_lte2.js"],
+        "js/jquery.min.js": ["lib/songbox_web/static/vendor/jquery.min.js"],
       }
 
       // To use a separate vendor.js bundle, specify two files path
@@ -26,12 +26,12 @@ exports.config = {
     },
     stylesheets: {
       joinTo: {
-        "css/app.css": /^(web\/static\/css)/,
-        "css/admin_lte2.css": ["web/static/vendor/admin_lte2.css"],
-        "css/active_admin.css.css": ["web/static/vendor/active_admin.css.css"],
+        "css/app.css": /^(lib\/songbox_web\/static\/css)/,
+        "css/admin_lte2.css": ["lib/songbox_web/static/vendor/admin_lte2.css"],
+        "css/active_admin.css.css": ["lib/songbox_web/static/vendor/active_admin.css.css"],
       },
       order: {
-        after: ["web/static/css/app.css"] // concat app.css last
+        after: ["lib/songbox_web/static/css/app.css"] // concat app.css last
       }
     },
     templates: {
@@ -43,14 +43,14 @@ exports.config = {
     // This option sets where we should place non-css and non-js assets in.
     // By default, we set this to "/web/static/assets". Files in this directory
     // will be copied to `paths.public`, which is "priv/static" by default.
-    assets: /^(web\/static\/assets)/
+    assets: /^(lib\/songbox_web\/static\/assets)/
   },
 
   // Phoenix paths configuration
   paths: {
     // Dependencies and current project directories to watch
     watched: [
-      "web/static",
+      "lib/songbox_web/static",
       "test/static"
     ],
 
@@ -62,13 +62,13 @@ exports.config = {
   plugins: {
     babel: {
       // Do not use ES6 compiler in vendor code
-      ignore: [/web\/static\/vendor/]
+      ignore: [/lib\/songbox_web\/static\/vendor/]
     }
   },
 
   modules: {
     autoRequire: {
-      "js/app.js": ["web/static/js/app"]
+      "js/app.js": ["lib/songbox_web/static/js/app"]
     }
   },
 

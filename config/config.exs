@@ -21,10 +21,10 @@ config :mime, :types, %{
 }
 
 # Configures the endpoint
-config :songbox, Songbox.Endpoint,
+config :songbox, SongboxWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "JDjBUeE6jtPrATQVZivmZSg6YAxy3akn2U9oi5Z9HoimJSD2n9FySiRKm5MQo84l",
-  render_errors: [view: Songbox.ErrorView, accepts: ~w(json)],
+  render_errors: [view: SongboxWeb.ErrorView, accepts: ~w(json)],
   pubsub: [name: Songbox.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
@@ -36,7 +36,7 @@ config :guardian, Guardian,
   ttl: { 30, :days },
   verify_issuer: true, # optional
   secret_key: "MHYI1P5y5cwpukEsOguYySh2fvkf/twdm3HKIF4bVXqmUk6TVsKQAwhnXIfsAQcs",
-  serializer: Songbox.GuardianSerializer
+  serializer: SongboxWeb.GuardianSerializer
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -52,12 +52,12 @@ config :sentry,
 
 config :ex_admin,
   repo: Songbox.Repo,
-  module: Songbox,    # Songbox.Web for phoenix >= 1.3.0-rc
+  module: SongboxWeb,
   modules: [
-    Songbox.ExAdmin.Dashboard,
-    Songbox.ExAdmin.User,
-    Songbox.ExAdmin.Room,
-    Songbox.ExAdmin.Song,
+    SongboxWeb.ExAdmin.Dashboard,
+    SongboxWeb.ExAdmin.User,
+    SongboxWeb.ExAdmin.Room,
+    SongboxWeb.ExAdmin.Song,
   ]
 
 config :basic_auth, :admin_auth, [
